@@ -1,7 +1,8 @@
 import { Router } from "express";
+import * as home from "../controllers/controlHome.js";
 
 const routerHome = Router();
 
-routerHome.get("/", (request, response) => response.render("home"));
+routerHome.get("/", home.getPage);
 
 export default routerHome;
