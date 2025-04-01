@@ -4,16 +4,23 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home Page</title>
+    <link rel="stylesheet" href="/style.css" />
   </head>
   <body>
-    <h1>Welcome to the Home Page</h1>
-    <ul>
+    <h1 class="title">Welcome to the Home Page</h1>
+    <ul class="home-container">
+      <div class="list-header">
+        <p>Category</p>
+        <p>Name</p>
+        <p>Price</p>
+        <p>Stock</p>
+      </div>
       <%all.map(item => { %>
-      <li>
-        <p>Category: <%=item.category_name%></p>
-        <p>Item: <%= item.item_name%></p>
-        <p>Price: $<%= item.price%></p>
-        <p>Stock Avaliable: <%= item.stock%></p>
+      <li class="home-list-item">
+        <p><%=item.category_name%></p>
+        <p><%= item.item_name%></p>
+        <p>$<%= item.price%></p>
+        <p><%= item.stock%></p>
       </li>
       <%}) %>
     </ul>
