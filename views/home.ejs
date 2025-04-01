@@ -7,5 +7,15 @@
   </head>
   <body>
     <h1>Welcome to the Home Page</h1>
+    <ul>
+      <%all.map(item => { %>
+      <li>
+        <p>Category: <%=item.category_name%></p>
+        <p>Item: <%= item.item_name%></p>
+        <p>Price: $<%= item.price%></p>
+        <p>Stock Avaliable: <%= item.stock%></p>
+      </li>
+      <%}) %>
+    </ul>
   </body>
 </html>

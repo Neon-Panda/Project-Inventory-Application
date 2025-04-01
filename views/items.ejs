@@ -7,5 +7,26 @@
   </head>
   <body>
     <h1>Display Items</h1>
+    <ul>
+      <%items.map(item => { %>
+      <li><%=item.name%></li>
+      <%}) %>
+    </ul>
+    <form action="/items/add" method="post">
+      <label for="itemName">Item name: </label>
+      <input type="text" name="itemName" id="itemName" />
+      <label for="itemPrice">Item price: </label>
+      <input type="text" name="itemPrice" id="itemPrice" />
+      <label for="itemStock">Item stock: </label>
+      <input type="number" name="itemStock" id="itemStock" />
+      <label for="itemCategory">Item category: </label>
+      <input type="number" name="itemCategory" id="itemCategory" />
+      <button type="submit"></button>
+    </form>
+    <form action="/items/delete" method="post">
+      <label for="itemDelete">Delete item: </label>
+      <input type="text" name="itemDelete" id="itemDelete" />
+      <button type="submit"></button>
+    </form>
   </body>
 </html>
