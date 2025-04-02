@@ -1,0 +1,14 @@
+# Node modules
+node_modules/
+npm-debug.log
+package-lock.json
+
+# Environment variables
+.env
+
+# Build files
+dist/
+out/
+
+# Logs
+*.log
