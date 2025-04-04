@@ -40,3 +40,7 @@ export async function deleteItem(request, response) {
       .json({ success: false, message: "Failed to delete item" });
   }
 }
+
+export async function editItem() {
+  const { itemName, itemPrice, itemStock, itemCategory } = request.body;
+}

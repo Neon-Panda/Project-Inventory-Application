@@ -1,6 +1,7 @@
 import StaticNav from "./components/HeaderAndFooter/StaticNav.jsx";
 import HomePage from "./pages/Home-Page.jsx";
 import CategoriesPage from "./pages/Categories-Page.jsx";
+import ItemsPage from "./pages/Items-Page.jsx";
 
 const routes = [
   {
@@ -15,10 +16,10 @@ const routes = [
         path: "/categories",
         element: <CategoriesPage />,
       },
-      // {
-      //   path: "/items",
-      //   element: <ItemsPage />,
-      // },
+      {
+        path: "/items",
+        element: <ItemsPage />,
+      },
     ],
   },
 ];

@@ -12,11 +12,6 @@ export async function getAllCategories() {
   return rows;
 }
 
-export async function getAllItems() {
-  const { rows } = await pool.query("SELECT * FROM items");
-  return rows;
-}
-
 export async function addCategory(name) {
   const { rows } = await pool.query(
     "INSERT INTO categories (name) VALUES ($1) RETURNING *",
@@ -33,6 +28,11 @@ export async function deleteCategory(categoryID) {
   return;
 }
 
+export async function getAllItems() {
+  const { rows } = await pool.query("SELECT * FROM items");
+  return rows;
+}
+
 export async function addItem(name, price, stock, categoryID) {
   const { rows } = await pool.query(
     "INSERT INTO items (name, price, stock, category_id) VALUES ($1, $2, $3, $4) RETURNING *",
@@ -41,9 +41,16 @@ export async function addItem(name, price, stock, categoryID) {
   return rows;
 }
 
-export async function deleteItem(ItemID) {
+// export async function editItem(name, price, stock, categoryID, itemID) {
+//   const { rows } = await pool.query(
+//     "UPDATE items (name, price, stock, category_id) VALUES ($1, $2, $3, $4) WHERE items.id = itemID RETURNING *",
+//     [name, parseFloat(price), parseInt(stock), parseInt(categoryID)]
+//   );
+// }
+
+export async function deleteItem(itemID) {
   const { rows } = await pool.query("DELETE FROM items WHERE items.id = $1", [
-    ItemID,
+    itemID,
   ]);
   return;
 }

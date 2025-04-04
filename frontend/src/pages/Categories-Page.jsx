@@ -8,14 +8,16 @@ export default function CategoriesPage() {
   useEffect(() => {
     async function makeCall() {
       const data = await fetch("http://localhost:4500/categories");
-      const datajson = await data.json();
-      setCategories(datajson.data);
+      const dataJSON = await data.json();
+      setCategories(dataJSON.data);
       setLoading(false);
     }
     makeCall();
   }, []);
 
   async function handleAddCategory() {
+    if (addCategory.length === 0) return;
+
     const categoryAdded = await fetch("http://localhost:4500/categories", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -49,7 +51,6 @@ export default function CategoriesPage() {
               <li key={item.id}>
                 <p>{item.name}</p>
                 <div>
-                  <button>Edit</button>
                   <button onClick={() => handleDelete(item.id)}>Delete</button>
                 </div>
               </li>
