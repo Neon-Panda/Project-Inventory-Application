@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 export default function CategoriesPage() {
   const [loading, setLoading] = useState(true);
   const [categories, setCategories] = useState([]);
+  const [addCategory, setAddCategory] = useState("");
 
   useEffect(() => {
     async function makeCall() {
@@ -14,9 +15,31 @@ export default function CategoriesPage() {
     makeCall();
   }, []);
 
+  async function handleAddCategory() {
+    const categoryAdded = await fetch("http://localhost:4500/categories", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ addCategory: addCategory }),
+    });
+    const categoryAddedJSON = (await categoryAdded.json()).data[0];
+    setCategories([...categories, categoryAddedJSON]);
+  }
+
+  async function handleDelete(itemID) {
+    await fetch(`http://localhost:4500/categories/${itemID}`, {
+      method: "DELETE",
+    });
+    setCategories([...categories.filter((item) => item.id !== itemID)]);
+  }
+
   return (
     <div>
       <h2>Categories testing</h2>
+      <input
+        onChange={(event) => setAddCategory(event.target.value)}
+        type="text"
+      />
+      <button onClick={handleAddCategory}>Add category</button>
       <ul>
         {loading ? (
           <li>Loading...</li>
@@ -27,7 +50,7 @@ export default function CategoriesPage() {
                 <p>{item.name}</p>
                 <div>
                   <button>Edit</button>
-                  <button>Delete</button>
+                  <button onClick={() => handleDelete(item.id)}>Delete</button>
                 </div>
               </li>
             );

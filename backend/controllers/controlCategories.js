@@ -16,6 +16,7 @@ export async function createCategory(request, response) {
   try {
     const categoryAdded = await db.addCategory(addCategory);
     response.status(200).json({ success: true, data: categoryAdded });
+    return categoryAdded;
   } catch {
     response
       .status(500)
